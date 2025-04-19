@@ -1,4 +1,5 @@
 from flask import Flask, request, jsonify
+import os
 import pandas as pd
 import numpy as np
 import statsmodels.api as sm
@@ -44,4 +45,5 @@ def run_regression():
         return jsonify({"error": str(e)}), 500
 
 if __name__ == "__main__":
-    app.run()
+    port = int(os.environ.get("PORT", 5000))
+    app.run(host="0.0.0.0", port=port)
